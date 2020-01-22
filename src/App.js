@@ -29,7 +29,7 @@ class App extends Component {
             {({ absolute, alpha, beta, gamma }) => (
               <div>
                 <div>
-                  {`Absolute: ${this.formatAngleData(absolute)}`}
+                  {`Absolute: ${absolute}`}
                 </div>
                 <div>
                   {`Alpha: ${this.formatAngleData(alpha)}`}
