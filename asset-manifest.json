@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/nhs-hack-pwa/static/css/main.d1b05096.chunk.css",
+    "main.js": "/nhs-hack-pwa/static/js/main.4e574fc7.chunk.js",
+    "main.js.map": "/nhs-hack-pwa/static/js/main.4e574fc7.chunk.js.map",
+    "runtime-main.js": "/nhs-hack-pwa/static/js/runtime-main.903f7a33.js",
+    "runtime-main.js.map": "/nhs-hack-pwa/static/js/runtime-main.903f7a33.js.map",
+    "static/js/2.013271c8.chunk.js": "/nhs-hack-pwa/static/js/2.013271c8.chunk.js",
+    "static/js/2.013271c8.chunk.js.map": "/nhs-hack-pwa/static/js/2.013271c8.chunk.js.map",
+    "index.html": "/nhs-hack-pwa/index.html",
+    "precache-manifest.1bfd0c16c803bee5328cad1c763dd162.js": "/nhs-hack-pwa/precache-manifest.1bfd0c16c803bee5328cad1c763dd162.js",
+    "service-worker.js": "/nhs-hack-pwa/service-worker.js",
+    "static/css/main.d1b05096.chunk.css.map": "/nhs-hack-pwa/static/css/main.d1b05096.chunk.css.map",
+    "static/js/2.013271c8.chunk.js.LICENSE": "/nhs-hack-pwa/static/js/2.013271c8.chunk.js.LICENSE",
+    "static/media/logo.svg": "/nhs-hack-pwa/static/media/logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.903f7a33.js",
+    "static/js/2.013271c8.chunk.js",
+    "static/css/main.d1b05096.chunk.css",
+    "static/js/main.4e574fc7.chunk.js"
+  ]
+}
