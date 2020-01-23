@@ -1,33 +1,58 @@
+  
 import React from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { ThemeProvider } from '@material-ui/core/styles';
-import { createMuiTheme } from '@material-ui/core/styles';
-import { Container, Box, Grid } from '@material-ui/core';
-import Button from '@material-ui/core/Button';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import SimpleExpansionPanel from './components/simple-expansion-panel';
+import { Home } from './screens/Home';
+import { DeviceAngles } from './screens/About';
 
-const theme = createMuiTheme({
-  palette: {
-    type: 'dark',
+import { AnimatedSwitch, spring } from 'react-router-transition';
+
+// silly workaround for gh-pages
+const basename = process.env.NODE_ENV === 'production'
+  ? '/react-router-transition'
+  : null;
+
+function glide(val) {
+  return spring(val, {
+    stiffness: 174,
+    damping: 24,
+  });
+}
+
+// function slide(val) {
+//   return spring(val, {
+//     stiffness: 125,
+//     damping: 16,
+//   });
+// }
+
+const pageTransitions = {
+  atEnter: {
+    offset: 100,
   },
-});
+  atLeave: {
+    offset: glide(-100),
+  },
+  atActive: {
+    offset: glide(0),
+  },
+};
 
 export default () => (
-  <ThemeProvider theme={theme}>
-    <CssBaseline />
-    <Grid container spacing={2}>
-      <Container>
-        <Box mt={2}>
-          <Button variant="contained" color="primary">
-            Hello World
-            </Button>
-        </Box>
-        <Box mt={2}>
-          <SimpleExpansionPanel />
-        </Box>
-      </Container>
-    </Grid>
-  </ThemeProvider>
+  <Router basename={basename}>
+    <Route render={({ location }) => (
+      <div>
+        <AnimatedSwitch
+          {...pageTransitions}
+          runOnMount={location.pathname === '/'}
+          mapStyles={styles => ({
+            transform: `translateX(${styles.offset}%)`,
+          })}
+        >
+          <Route path="/" exact component={Home} />
+          <Route path="/device-angles" component={DeviceAngles} />
+        </AnimatedSwitch>
+      </div>
+    )} />
+  </Router>
 )
-
