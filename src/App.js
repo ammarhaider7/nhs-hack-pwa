@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.scss';
-import DeviceOrientation from 'react-device-orientation';
+import { DeviceOrientation } from './components/device-orientation.component';
 
 class App extends Component {
 
