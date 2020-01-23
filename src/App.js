@@ -1,58 +1,16 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.scss';
-import { DeviceOrientation } from './components/device-orientation.component';
+import React from 'react';
+import Button from '@material-ui/core/Button';
+import { Container, Box, Grid } from '@material-ui/core';
 
-class App extends Component {
+export default () => (
+  <Grid container spacing={2}>
+    <Container>
+      <Box mt={2}>
+        <Button variant="contained" color="primary">
+          Hello World
+        </Button>
+      </Box>
+    </Container>
+  </Grid>
 
-  formatAngleData(val) {
-    return Number(val).toFixed(2);
-  }
-
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          <DeviceOrientation>
-            {({ absolute, alpha, beta, gamma, errMsg, isSupported }) => (
-              <div>
-                <div>
-                  {`Absolute: ${absolute}`}
-                </div>
-                <div>
-                  {`Alpha: ${this.formatAngleData(alpha)}`}
-                </div>
-                <div>
-                  {`Beta: ${this.formatAngleData(beta)}`}
-                </div>
-                <div>
-                  {`Gamma: ${this.formatAngleData(gamma)}`}
-                </div>
-                <div>
-                  {`isSupported: ${isSupported}`}
-                </div>
-                <div>
-                  {`Err: ${errMsg}`}
-                </div>
-              </div>
-            )}
-          </DeviceOrientation>
-        </header>
-      </div>
-    );
-  }
-}
-
-export default App;
+)
