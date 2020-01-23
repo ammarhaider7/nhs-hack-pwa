@@ -15,6 +15,7 @@ export class DeviceOrientation extends Component {
     alpha: 0,
     beta: 0,
     gamma: 0,
+    errMsg: '',
   };
 
   handleOrientation = event => {
@@ -26,13 +27,19 @@ export class DeviceOrientation extends Component {
   componentDidMount() {
     if (typeof DeviceOrientationEvent.requestPermission === 'function') {
       // iOS 13+
+      console.log('Requesting permission to use deviceorientation');
       DeviceOrientationEvent.requestPermission()
         .then(response => {
           if (response === 'granted') {
             window.addEventListener('deviceorientation', this.handleOrientation, true);
           }
         })
-        .catch(console.error)
+        .catch((err) => {
+          console.error(err);
+          this.setState({
+            errMsg: 'iOS 13+: error requesting permission'
+          });
+        });
     } else {
       // non iOS 13+
       window.addEventListener('deviceorientation', this.handleOrientation, true);

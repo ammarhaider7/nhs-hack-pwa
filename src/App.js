@@ -26,7 +26,7 @@ class App extends Component {
             Learn React
           </a>
           <DeviceOrientation>
-            {({ absolute, alpha, beta, gamma }) => (
+            {({ absolute, alpha, beta, gamma, errMsg }) => (
               <div>
                 <div>
                   {`Absolute: ${absolute}`}
@@ -39,6 +39,9 @@ class App extends Component {
                 </div>
                 <div>
                   {`Gamma: ${this.formatAngleData(gamma)}`}
+                </div>
+                <div>
+                  {`Err: ${this.formatAngleData(errMsg)}`}
                 </div>
               </div>
             )}
