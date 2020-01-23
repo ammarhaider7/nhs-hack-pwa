@@ -3,7 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import { Home } from './screens/Home';
-import { DeviceAngles } from './screens/About';
+import { DeviceAngles } from './screens/DeviceAngles';
 
 import { AnimatedSwitch, spring } from 'react-router-transition';
 

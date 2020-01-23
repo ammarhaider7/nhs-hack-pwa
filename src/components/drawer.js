@@ -9,7 +9,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
-import { AppBar, Toolbar, IconButton, Typography, Box } from '@material-ui/core';
+import { AppBar, Toolbar, IconButton, Typography, Box, Link } from '@material-ui/core';
 
 const useStyles = makeStyles({
   list: {
@@ -51,33 +51,9 @@ export function TemporaryDrawer() {
             <ListItemText primary={text} />
           </ListItem>
         ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-    </div>
-  );
-
-  const fullList = side => (
-    <div
-      className={classes.fullList}
-      role="presentation"
-      onClick={toggleDrawer(side, false)}
-      onKeyDown={toggleDrawer(side, false)}
-    >
-      <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+        <Link to="/device-angles">
+          Device Angles
+        </Link>
       </List>
       <Divider />
       <List>
@@ -105,15 +81,6 @@ export function TemporaryDrawer() {
       </AppBar>
       <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
         {sideList('left')}
-      </Drawer>
-      <Drawer anchor="top" open={state.top} onClose={toggleDrawer('top', false)}>
-        {fullList('top')}
-      </Drawer>
-      <Drawer anchor="bottom" open={state.bottom} onClose={toggleDrawer('bottom', false)}>
-        {fullList('bottom')}
-      </Drawer>
-      <Drawer anchor="right" open={state.right} onClose={toggleDrawer('right', false)}>
-        {sideList('right')}
       </Drawer>
     </Box>
   );

@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 
 import { Screen } from '../../Screen';
 import { DeviceOrientation } from '../../components/device-orientation.component';
-import './About.scss';
+import './DeviceAngles.scss';
 
 export class DeviceAngles extends Component {
 
