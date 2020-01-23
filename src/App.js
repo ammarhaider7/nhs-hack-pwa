@@ -41,7 +41,7 @@ class App extends Component {
                   {`Gamma: ${this.formatAngleData(gamma)}`}
                 </div>
                 <div>
-                  {`Err: ${this.formatAngleData(errMsg)}`}
+                  {`Err: ${errMsg}`}
                 </div>
               </div>
             )}
