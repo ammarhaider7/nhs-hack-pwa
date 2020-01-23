@@ -44,7 +44,7 @@ export class DeviceOrientation extends Component {
           .catch((err) => {
             console.error(err);
             this.setState({
-              errMsg: 'iOS 13+: error requesting permission'
+              errMsg: `iOS 13+: error requesting permission: ${JSON.stringify(err)}`
             });
           });
       } else {
