@@ -9,7 +9,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
-import { AppBar, Toolbar, IconButton, Typography, Box, Link } from '@material-ui/core';
+import { AppBar, Toolbar, IconButton, Typography, Box } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles({
   list: {
@@ -37,6 +38,12 @@ export function TemporaryDrawer() {
     setState({ ...state, [side]: open });
   };
 
+  const history = useHistory();
+
+  function handleClick() {
+    history.push('/device-angles');
+  }
+
   const sideList = side => (
     <div
       className={classes.list}
@@ -51,9 +58,9 @@ export function TemporaryDrawer() {
             <ListItemText primary={text} />
           </ListItem>
         ))}
-        <Link to="/device-angles">
+        <ListItem button key={'device-angles-btn'} onClick={handleClick}>
           Device Angles
-        </Link>
+        </ListItem>
       </List>
       <Divider />
       <List>
