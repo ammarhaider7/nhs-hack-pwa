@@ -1,58 +1,58 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.scss';
-import { DeviceOrientation } from './components/device-orientation.component';
+  
+import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-class App extends Component {
+import { Home } from './screens/Home';
+import { DeviceAngles } from './screens/DeviceAngles';
 
-  formatAngleData(val) {
-    return Number(val).toFixed(2);
-  }
+import { AnimatedSwitch, spring } from 'react-router-transition';
 
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          <DeviceOrientation>
-            {({ absolute, alpha, beta, gamma, errMsg, isSupported }) => (
-              <div>
-                <div>
-                  {`Absolute: ${absolute}`}
-                </div>
-                <div>
-                  {`Alpha: ${this.formatAngleData(alpha)}`}
-                </div>
-                <div>
-                  {`Beta: ${this.formatAngleData(beta)}`}
-                </div>
-                <div>
-                  {`Gamma: ${this.formatAngleData(gamma)}`}
-                </div>
-                <div>
-                  {`isSupported: ${isSupported}`}
-                </div>
-                <div>
-                  {`Err: ${errMsg}`}
-                </div>
-              </div>
-            )}
-          </DeviceOrientation>
-        </header>
-      </div>
-    );
-  }
+// silly workaround for gh-pages
+const basename = process.env.NODE_ENV === 'production'
+  ? '/react-router-transition'
+  : null;
+
+function glide(val) {
+  return spring(val, {
+    stiffness: 174,
+    damping: 24,
+  });
 }
 
-export default App;
+// function slide(val) {
+//   return spring(val, {
+//     stiffness: 125,
+//     damping: 16,
+//   });
+// }
+
+const pageTransitions = {
+  atEnter: {
+    offset: 100,
+  },
+  atLeave: {
+    offset: glide(-100),
+  },
+  atActive: {
+    offset: glide(0),
+  },
+};
+
+export default () => (
+  <Router basename={basename}>
+    <Route render={({ location }) => (
+      <div>
+        <AnimatedSwitch
+          {...pageTransitions}
+          runOnMount={location.pathname === '/'}
+          mapStyles={styles => ({
+            transform: `translateX(${styles.offset}%)`,
+          })}
+        >
+          <Route path="/" exact component={Home} />
+          <Route path="/device-angles" component={DeviceAngles} />
+        </AnimatedSwitch>
+      </div>
+    )} />
+  </Router>
+)
