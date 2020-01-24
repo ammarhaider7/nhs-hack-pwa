@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 
 import { Screen } from '../../Screen';
 import SimpleExpansionPanel from '../../components/simple-expansion-panel';
-import { TemporaryDrawer } from '../../components/drawer';
 
 import '../../App.scss';
 export class Home extends Component {
@@ -13,7 +12,6 @@ export class Home extends Component {
   render() {
     return (
       <Screen>
-        <TemporaryDrawer />
         <Box mt={2}>
           <SimpleExpansionPanel />
         </Box>

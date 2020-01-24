@@ -3,6 +3,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { Container, Grid } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import { TemporaryDrawer } from './components/drawer';
 
 const theme = createMuiTheme({
   palette: {
@@ -17,6 +18,7 @@ export const Screen = ({ children }) => (
     <CssBaseline />
     <Grid container className={className}>
       <Container>
+        <TemporaryDrawer />
         {children}
       </Container>
     </Grid>
