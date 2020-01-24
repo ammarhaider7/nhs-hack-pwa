@@ -1,16 +1,11 @@
   
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { HashRouter as Router, Route } from 'react-router-dom';
 
 import { Home } from './screens/Home';
 import { DeviceAngles } from './screens/DeviceAngles';
 
 import { AnimatedSwitch, spring } from 'react-router-transition';
-
-// silly workaround for gh-pages
-const basename = process.env.NODE_ENV === 'production'
-  ? '/react-router-transition'
-  : null;
 
 function glide(val) {
   return spring(val, {
@@ -39,7 +34,7 @@ const pageTransitions = {
 };
 
 export default () => (
-  <Router basename={basename}>
+  <Router basename={null}>
     <Route render={({ location }) => (
       <div>
         <AnimatedSwitch
