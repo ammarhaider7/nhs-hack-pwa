@@ -9,6 +9,8 @@ import { Measure } from './screens/measure'
 
 import { AnimatedSwitch, spring } from 'react-router-transition';
 
+import localforage from 'localforage';
+
 function glide(val) {
   return spring(val, {
     stiffness: 174,
@@ -34,6 +36,13 @@ const pageTransitions = {
     offset: glide(0),
   },
 };
+
+localforage.config({
+  name        : 'myApp',
+  version     : 1.0,
+  size        : 4980736, // Size of database, in bytes. WebSQL-only for now.
+  storeName   : 'nhshack', // Should be alphanumeric, with underscores.
+});
 
 export default () => (
   <Router basename={null}>

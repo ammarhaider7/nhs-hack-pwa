@@ -2,10 +2,11 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-// import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { Box, TextField } from '@material-ui/core';
+
+import { LocalDeviceStorage } from '../services/local-device-storage';
 
 const useStyles = makeStyles(theme => ({
   formControl: {
@@ -24,16 +25,22 @@ export default function SimpleSelect() {
   const [directionOfMotion, setDirectionOfMotion] = React.useState('');
   const [instructions, setInstructions] = React.useState('');
 
-  const handleChange = event => {
-    setJoint(event.target.value);
+  const handleJointChange = event => {
+    const { value } = event.target;
+    setJoint(value);
+    LocalDeviceStorage.set('joint', value)
   };
 
   const handledirectionOfMotionChange = event => {
-    setDirectionOfMotion(event.target.value);
+    const { value } = event.target;
+    setDirectionOfMotion(value);
+    LocalDeviceStorage.set('directionOfMotion', value)
   }
 
   const handleInstructionChange = event => {
-    setInstructions(event.target.value);
+    const { value } = event.target;
+    setInstructions(value);
+    LocalDeviceStorage.set('instructions', value)
   }
 
   return (
@@ -45,7 +52,7 @@ export default function SimpleSelect() {
             labelId="demo-simple-select-label"
             id="demo-simple-select-joint"
             value={joint}
-            onChange={handleChange}
+            onChange={handleJointChange}
           >
             <MenuItem value={'Elbow'}>Elbow</MenuItem>
             <MenuItem value={'Knee'}>Knee</MenuItem>
