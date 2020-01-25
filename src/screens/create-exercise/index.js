@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Box, Typography } from '@material-ui/core';
+import { Box, Typography, Grid } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 
@@ -21,16 +21,22 @@ export class CreateExercise extends Component {
         <Box mt={2}>
           <SimpleSelect />
         </Box>
-        <Box mt={2}>
-          <Button variant="contained" color="primary"
-            component={Link}
-            to="/measure"
-            label="measure"
-            value="measure"
-          >
-            Take measurement
-          </Button>
-        </Box>
+        <Grid
+          container
+          direction="row"
+          justify="center"
+        >
+          <Box mt={20}>
+            <Button variant="contained" color="primary"
+              component={Link}
+              to="/measure"
+              label="measure"
+              value="measure"
+            >
+              Take measurement
+            </Button>
+          </Box>
+        </Grid>
       </Screen>
     );
   }
