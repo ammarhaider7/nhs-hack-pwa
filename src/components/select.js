@@ -75,7 +75,7 @@ export default function SimpleSelect() {
         </FormControl>
       </Box>
       <Box mt={2} ml={1}>
-        <TextField id="standard-basic" label="Instructions" value={instructions} onChange={handleInstructionChange} />
+        <TextField id="standard-basic" label="Instructions" multiline value={instructions} onChange={handleInstructionChange} style={{ width: '100%' }} />
       </Box>
     </div>
   );
