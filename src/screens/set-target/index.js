@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Box, Typography, Slider, Grid, Input, makeStyles } from '@material-ui/core';
+import { Box, Typography, Slider, Grid, Input, makeStyles, Button, withStyles } from '@material-ui/core';
 
 import { LocalDeviceStorage } from '../../services/local-device-storage';
 
 import { Screen } from '../../Screen';
 
 import '../../App.scss';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles({
   root: {
@@ -15,6 +16,36 @@ const useStyles = makeStyles({
     width: 42,
   },
 });
+
+const PrettoSlider = withStyles({
+  root: {
+    color: '#52af77',
+    height: 8,
+  },
+  thumb: {
+    height: 24,
+    width: 24,
+    backgroundColor: '#fff',
+    border: '2px solid currentColor',
+    marginTop: -8,
+    marginLeft: -12,
+    '&:focus,&:hover,&$active': {
+      boxShadow: 'inherit',
+    },
+  },
+  active: {},
+  valueLabel: {
+    left: 'calc(-50% + 4px)',
+  },
+  track: {
+    height: 8,
+    borderRadius: 4,
+  },
+  rail: {
+    height: 8,
+    borderRadius: 4,
+  },
+})(Slider);
 
 export function SetTarget() {
 
@@ -49,6 +80,13 @@ export function SetTarget() {
     return `${value}°`;
   }
 
+  const history = useHistory();
+
+  function handleSave() {
+    LocalDeviceStorage.set('targetLimit', value);
+    history.push('/');
+  }
+
   return (
     <Screen>
       <Box mt={2}>
@@ -70,7 +108,7 @@ export function SetTarget() {
         </Typography>
         <Grid container spacing={2} alignItems="center">
           <Grid item xs>
-            <Slider
+            <PrettoSlider
               defaultValue={0}
               getAriaValueText={valuetext}
               aria-labelledby="discrete-slider-small-steps"
@@ -97,6 +135,21 @@ export function SetTarget() {
               }}
             />
           </Grid>
+        </Grid>
+        <Grid
+          container
+          direction="row"
+          justify="center"
+        >
+          <Box mt={20}>
+            <Button variant="contained" color="primary"
+              onClick={handleSave}
+              label="Home"
+              value="Home"
+            >
+              Save
+            </Button>
+          </Box>
         </Grid>
       </Box>
     </Screen>
