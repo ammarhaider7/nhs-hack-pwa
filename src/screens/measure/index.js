@@ -20,8 +20,12 @@ export function Measure() {
 
   const formatAngleData = (val) => {
     const formattedAngle = Number(val).toFixed(0);
-    if (!zeroAngleSet) return formattedAngle;
-    return formattedAngle - zeroAngle;
+    return formattedAngle;
+  }
+
+  const adjustForZeroAngle = () => {
+    if (!zeroAngleSet) return beta;
+    return formatAngleData(beta) - zeroAngle;
   }
 
   const [zeroAngle, setZeroAngle] = useState('');
@@ -43,7 +47,7 @@ export function Measure() {
   const history = useHistory();
 
   const handleFinaliseClick = async () => {
-    await LocalDeviceStorage.set('initialRange', formatAngleData(beta));
+    await LocalDeviceStorage.set('initialRange', formatAngleData(beta) - zeroAngle);
     history.push('/set-target');
   }
 
@@ -59,11 +63,12 @@ export function Measure() {
       <Box mt={10}>
         <DeviceOrientation>
           {({ beta }) => {
-            setBeta(formatAngleData(beta));
+            const formattedBeta = formatAngleData(beta)
+            setBeta(formattedBeta);
             return (
               <Box>
                 <Typography variant="h1" component="h1" align='center' className={zeroAngleSet ? 'txt-green' : ''}>
-                  {`${formatAngleData(beta)}°`}
+                  {`${adjustForZeroAngle()}°`}
                 </Typography>
               </Box>
             )
