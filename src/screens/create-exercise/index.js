@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { Screen } from '../../Screen';
 
 import '../../App.scss';
+import SimpleSelect from '../../components/select';
 
 export class CreateExercise extends Component {
 
@@ -13,7 +14,7 @@ export class CreateExercise extends Component {
     return (
       <Screen>
         <Box mt={2}>
-
+          <SimpleSelect />
         </Box>
         <Box mt={2}>
           <Button variant="contained" color="primary"
