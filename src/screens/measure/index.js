@@ -10,8 +10,11 @@ import '../../App.scss';
 export function Measure() {
 
   const formatAngleData = (val) => {
-    if (!zeroAngleSet) return Number(val).toFixed(0);
-    return Number(val).toFixed(0) - zeroAngle;
+    console.log(`### zeroAngleSet: ${zeroAngleSet}`);
+    const formattedAngle = Number(val).toFixed(0);
+    if (!zeroAngleSet) return formattedAngle;
+    setZeroAngle(formattedAngle);
+    return formattedAngle - zeroAngle;
   }
 
   const [zeroAngle, setZeroAngle] = useState('');
@@ -24,6 +27,7 @@ export function Measure() {
 
   const handleSetZeroClick = () => {
     LocalDeviceStorage.set('zeroAngle');
+    console.log('handleSetZeroClick');
     setZeroAngleSet(true);
   }
 
@@ -37,7 +41,7 @@ export function Measure() {
         </Typography>
       </Box>
       <Typography>{`zero angle: ${zeroAngle}`}</Typography>
-      <Box mt={13}>
+      <Box mt={10}>
         <DeviceOrientation>
           {({ beta }) => (
             <Box>
