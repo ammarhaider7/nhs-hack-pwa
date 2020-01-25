@@ -22,6 +22,7 @@ export default function SimpleSelect() {
   const classes = useStyles();
   const [joint, setJoint] = React.useState('');
   const [directionOfMotion, setDirectionOfMotion] = React.useState('');
+  const [instructions, setInstructions] = React.useState('');
 
   const handleChange = event => {
     setJoint(event.target.value);
@@ -29,6 +30,10 @@ export default function SimpleSelect() {
 
   const handledirectionOfMotionChange = event => {
     setDirectionOfMotion(event.target.value);
+  }
+
+  const handleInstructionChange = event => {
+    setInstructions(event.target.value);
   }
 
   return (
@@ -63,7 +68,7 @@ export default function SimpleSelect() {
         </FormControl>
       </Box>
       <Box mt={2} ml={1}>
-        <TextField id="standard-basic" label="Instructions" />
+        <TextField id="standard-basic" label="Instructions" value={instructions} onChange={handleInstructionChange} />
       </Box>
     </div>
   );

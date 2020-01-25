@@ -13,7 +13,7 @@ export class Home extends Component {
     return (
       <Screen>
         <Box mt={2}>
-          <Typography variant="h3">
+          <Typography variant="h4">
             Home
           </Typography>
         </Box>

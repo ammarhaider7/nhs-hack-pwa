@@ -5,6 +5,7 @@ import { HashRouter as Router, Route } from 'react-router-dom';
 import { Home } from './screens/Home';
 import { DeviceAngles } from './screens/DeviceAngles';
 import { CreateExercise } from './screens/create-exercise'
+import { Measure } from './screens/measure'
 
 import { AnimatedSwitch, spring } from 'react-router-transition';
 
@@ -48,6 +49,7 @@ export default () => (
           <Route path="/" exact component={Home} />
           <Route path="/device-angles" component={DeviceAngles} />
           <Route path="/create-exercise" component={CreateExercise} />
+          <Route path="/measure" component={Measure} />
         </AnimatedSwitch>
       </div>
     )} />
