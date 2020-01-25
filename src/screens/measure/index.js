@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Typography, Button, Grid, makeStyles } from '@material-ui/core';
+import { Box, Typography, Button, Grid, makeStyles, createMuiTheme, ThemeProvider } from '@material-ui/core';
 
 import { DeviceOrientation } from '../../components/device-orientation.component';
 import { Screen } from '../../Screen';
@@ -7,6 +7,12 @@ import { LocalDeviceStorage } from '../../services/local-device-storage';
 
 import '../../App.scss';
 import { useHistory } from 'react-router-dom';
+
+const theme = createMuiTheme({
+  palette: {
+    type: 'dark',
+  },
+});
 
 export function Measure() {
 
@@ -54,57 +60,59 @@ export function Measure() {
   getZeroAngleFromStorage();
 
   return (
-    <Screen>
-      <Box mt={2}>
-        <Typography variant="h5">
-          Take Measurement
+    <ThemeProvider theme={theme}>
+      <Screen>
+        <Box mt={2}>
+          <Typography variant="h5">
+            Take Measurement
         </Typography>
-      </Box>
-      <Box mt={10}>
-        <DeviceOrientation>
-          {({ beta }) => {
-            const formattedBeta = formatAngleData(beta)
-            setBeta(formattedBeta);
-            return (
-              <Box>
-                <Typography variant="h1" component="h1" align='center' className={zeroAngleSet ? 'txt-green' : ''}>
-                  {`${adjustForZeroAngle()}°`}
-                </Typography>
-              </Box>
-            )
-          }}
-        </DeviceOrientation>
-      </Box>
-      <Grid
-        container
-        direction="row"
-        justify="center"
-      >
+        </Box>
         <Box mt={10}>
-          <Button
-            variant="contained"
-            label="set-zero"
-            value="set-zero"
-            onClick={handleSetZeroClick}
-            className={zeroAngleSet ? classes.hidden : ''}
-          >
-            Set zero & start motion
-          </Button>
-          <Box mt={2}>
+          <DeviceOrientation>
+            {({ beta }) => {
+              const formattedBeta = formatAngleData(beta)
+              setBeta(formattedBeta);
+              return (
+                <Box>
+                  <Typography variant="h1" component="h1" align='center' className={zeroAngleSet ? 'txt-green' : ''}>
+                    {`${adjustForZeroAngle()}°`}
+                  </Typography>
+                </Box>
+              )
+            }}
+          </DeviceOrientation>
+        </Box>
+        <Grid
+          container
+          direction="row"
+          justify="center"
+        >
+          <Box mt={10}>
             <Button
               variant="contained"
-              color="primary"
-              label="finalise-measurement"
-              value="finalise-measurement"
-              onClick={handleFinaliseClick}
-              style={{justifyContent: 'center'}}
-              className={!zeroAngleSet ? classes.hidden : ''}
+              label="set-zero"
+              value="set-zero"
+              onClick={handleSetZeroClick}
+              className={zeroAngleSet ? classes.hidden : ''}
             >
-              Ok & configure target
+              Set zero & start motion
+          </Button>
+            <Box mt={2}>
+              <Button
+                variant="contained"
+                color="primary"
+                label="finalise-measurement"
+                value="finalise-measurement"
+                onClick={handleFinaliseClick}
+                style={{ justifyContent: 'center' }}
+                className={!zeroAngleSet ? classes.hidden : ''}
+              >
+                Ok & configure target
             </Button>
+            </Box>
           </Box>
-        </Box>
-      </Grid>
-    </Screen>
+        </Grid>
+      </Screen>
+    </ThemeProvider>
   );
 }
