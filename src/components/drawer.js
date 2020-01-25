@@ -44,6 +44,10 @@ export function TemporaryDrawer() {
     history.push('/device-angles');
   }
 
+  function handleClickToHome() {
+    history.push('/');
+  }
+
   const sideList = side => (
     <div
       className={classes.list}
@@ -52,25 +56,14 @@ export function TemporaryDrawer() {
       onKeyDown={toggleDrawer(side, false)}
     >
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+        <ListItem button key={'home-btn'} onClick={handleClickToHome}>
+          Home
+        </ListItem>
         <ListItem button key={'device-angles-btn'} onClick={handleClick}>
           Device Angles
         </ListItem>
       </List>
       <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
     </div>
   );
 
@@ -82,7 +75,7 @@ export function TemporaryDrawer() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            NHS Hack Rehab App
+            Digital rehab assistant
           </Typography>
         </Toolbar>
       </AppBar>

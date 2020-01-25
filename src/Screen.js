@@ -1,20 +1,12 @@
 import React from 'react';
-import { ThemeProvider } from '@material-ui/core/styles';
-import { createMuiTheme } from '@material-ui/core/styles';
 import { Container, Grid } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { TemporaryDrawer } from './components/drawer';
 
-const theme = createMuiTheme({
-  palette: {
-    type: 'dark',
-  },
-});
-
 const className = 'base-screen';
 
 export const Screen = ({ children }) => (
-  <ThemeProvider theme={theme}>
+  <div>
     <CssBaseline />
     <Grid container className={className}>
       <Container>
@@ -22,5 +14,5 @@ export const Screen = ({ children }) => (
         {children}
       </Container>
     </Grid>
-  </ThemeProvider>
+  </div>
 );
