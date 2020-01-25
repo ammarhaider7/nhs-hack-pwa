@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Typography, Slider, Grid, Input, makeStyles, Button, withStyles } from '@material-ui/core';
+import { Box, Typography, Slider, Grid, Button, withStyles } from '@material-ui/core';
 
 import { LocalDeviceStorage } from '../../services/local-device-storage';
 
@@ -7,15 +7,6 @@ import { Screen } from '../../Screen';
 
 import '../../App.scss';
 import { useHistory } from 'react-router-dom';
-
-const useStyles = makeStyles({
-  root: {
-    width: 250,
-  },
-  input: {
-    width: 42,
-  },
-});
 
 const PrettoSlider = withStyles({
   root: {
@@ -49,26 +40,13 @@ const PrettoSlider = withStyles({
 
 export function SetTarget() {
 
-  const classes = useStyles();
   const [initialRange, setInitialRange] = useState('');
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState([-10, 10]);
 
   const getInitialRange = async () => {
     const range = await LocalDeviceStorage.get('initialRange');
     setInitialRange(range);
   }
-
-  const handleInputChange = event => {
-    setValue(event.target.value === '' ? '' : Number(event.target.value));
-  };
-
-  const handleBlur = () => {
-    if (value < -90) {
-      setValue(-90);
-    } else if (value > 90) {
-      setValue(90);
-    }
-  };
 
   const handleSliderChange = (event, newValue) => {
     setValue(newValue);
@@ -104,44 +82,35 @@ export function SetTarget() {
       </Box>
       <Box mt={2}>
         <Typography variant="h6" gutterBottom>
-          Target limit (°)
+          Set target range limits
         </Typography>
         <Grid container spacing={2} alignItems="center">
           <Grid item xs>
             <PrettoSlider
               defaultValue={0}
               getAriaValueText={valuetext}
-              aria-labelledby="discrete-slider-small-steps"
               step={1}
-              min={-90}
-              max={90}
+              min={-180}
+              max={180}
               valueLabelDisplay="auto"
               onChange={handleSliderChange}
-            />
-          </Grid>
-          <Grid item>
-            <Input
-              className={classes.input}
               value={value}
-              margin="dense"
-              onChange={handleInputChange}
-              onBlur={handleBlur}
-              inputProps={{
-                step: 1,
-                min: -90,
-                max: 90,
-                type: 'number',
-                'aria-labelledby': 'input-slider',
-              }}
+              aria-labelledby="range-slider"
             />
           </Grid>
         </Grid>
         <Grid
+          mt={2}
           container
           direction="row"
           justify="center"
         >
-          <Box mt={20}>
+          <Box>
+            <Typography variant="body2" gutterBottom>
+                Target range set between <strong>{value[0]}°</strong> and <strong>{value[1]}</strong>°
+            </Typography>
+          </Box>
+          <Box mt={15}>
             <Button variant="contained" color="primary"
               onClick={handleSave}
               label="Home"
