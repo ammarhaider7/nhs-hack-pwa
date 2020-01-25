@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/nhs-hack-pwa/precache-manifest.fa4e451bd6ec49d559c26e8ba017623a.js"
+  "/nhs-hack-pwa/precache-manifest.a1ae923551648ba65137a3a4147e40cf.js"
 );
 
 self.addEventListener('message', (event) => {
