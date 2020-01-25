@@ -61,7 +61,8 @@ export function SetTarget() {
   const history = useHistory();
 
   function handleSave() {
-    LocalDeviceStorage.set('targetLimit', value);
+    LocalDeviceStorage.set('targetUpperLimit', value[1]);
+    LocalDeviceStorage.set('targetLowerLimit', value[0]);
     history.push('/');
   }
 
