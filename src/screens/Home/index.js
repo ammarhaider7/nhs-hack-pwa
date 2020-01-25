@@ -28,16 +28,6 @@ export class Home extends Component {
             Create exercise
           </Button>
         </Box>
-        <Box mt={2}>
-          <Button variant="contained" color="primary"
-            component={Link}
-            to="/device-angles"
-            label="device-angles"
-            value="device-angles"
-          >
-            Device Angles
-          </Button>
-        </Box>
       </Screen>
     );
   }

@@ -6,6 +6,7 @@ import { Screen } from '../../Screen';
 import { LocalDeviceStorage } from '../../services/local-device-storage';
 
 import '../../App.scss';
+import { useHistory } from 'react-router-dom';
 
 export function Measure() {
 
@@ -33,13 +34,17 @@ export function Measure() {
   }
 
   const handleSetZeroClick = () => {
-    setZeroAngle(beta);
-    LocalDeviceStorage.set('zeroAngle', beta);
+    const formattedBeta = formatAngleData(beta);
+    setZeroAngle(formattedBeta);
+    LocalDeviceStorage.set('zeroAngle', formattedBeta);
     setZeroAngleSet(true);
   }
 
-  const handleFinaliseClick = () => {
-    
+  const history = useHistory();
+
+  const handleFinaliseClick = async () => {
+    await LocalDeviceStorage.set('initialRange', formatAngleData(beta));
+    history.push('/set-target');
   }
 
   getZeroAngleFromStorage();
@@ -90,7 +95,7 @@ export function Measure() {
               style={{justifyContent: 'center'}}
               className={!zeroAngleSet ? classes.hidden : ''}
             >
-              Finalise
+              Ok & configure target
             </Button>
           </Box>
         </Box>

@@ -72,7 +72,7 @@ export function TemporaryDrawer() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            Digital rehab assistant
+            Rehabify
           </Typography>
         </Toolbar>
       </AppBar>
