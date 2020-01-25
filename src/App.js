@@ -6,6 +6,7 @@ import { Home } from './screens/Home';
 import { DeviceAngles } from './screens/DeviceAngles';
 import { CreateExercise } from './screens/create-exercise'
 import { Measure } from './screens/measure'
+import { SetTarget } from './screens/set-target'
 
 import { AnimatedSwitch, spring } from 'react-router-transition';
 
@@ -59,6 +60,7 @@ export default () => (
           <Route path="/device-angles" component={DeviceAngles} />
           <Route path="/create-exercise" component={CreateExercise} />
           <Route path="/measure" component={Measure} />
+          <Route path="/set-target" component={SetTarget} />
         </AnimatedSwitch>
       </div>
     )} />
