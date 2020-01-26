@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Box, Typography, Slider, Grid, Button, withStyles } from '@material-ui/core';
+import { Box, Typography, Slider, Grid, Button, withStyles, Link } from '@material-ui/core';
+import * as copy from 'clipboard-copy';
 
 import { Screen } from '../../Screen';
 
 import '../../App.scss';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import { ExerciseService } from '../../services/exercise';
 
 const PrettoSlider = withStyles({
@@ -41,6 +42,8 @@ export function SetTarget() {
 
   const [initialRange, setInitialRange] = useState('');
   const [value, setValue] = React.useState([-10, 10]);
+  const [exerciseLink, setExerciseLink] = React.useState('');
+  const [isSaved, setIsSaved] = React.useState(false);
 
   const getInitialRange = async () => {
     const range = await ExerciseService.getInitialRange();
@@ -51,19 +54,31 @@ export function SetTarget() {
     setValue(newValue);
   };
 
+  async function handleLinkGeneration() {
+    const queryParam = await ExerciseService.encodeExerciseData();
+    const link = `ammarhaider7.github.io/nhs-hack-pwa/?e=${queryParam}`;
+    setExerciseLink(link);
+  }
+
   getInitialRange();
 
   function valuetext(value) {
     return `${value}°`;
   }
 
-  const history = useHistory();
+  function handleCopy() {
+    copy(exerciseLink);
+  }
+
+  // const history = useHistory();
 
   async function handleSave() {
+    setIsSaved(true);
     await ExerciseService.setTargetUpperLimit(value[1]);
     await ExerciseService.setTargetLowerLimit(value[0]);
-    history.push('/');
   }
+
+  const preventDefault = event => event.preventDefault();
 
   return (
     <Screen>
@@ -102,15 +117,15 @@ export function SetTarget() {
         <Grid
           mt={2}
           container
-          direction="row"
+          direction="column"
           justify="center"
         >
           <Box>
             <Typography variant="body2" gutterBottom>
-                Target range set between <strong>{value[0]}°</strong> and <strong>{value[1]}</strong>°
+              Target range set between <strong>{value[0]}°</strong> and <strong>{value[1]}</strong>°
             </Typography>
           </Box>
-          <Box mt={15}>
+          <Box mt={1}>
             <Button variant="contained" color="primary"
               onClick={handleSave}
               label="Home"
@@ -119,6 +134,47 @@ export function SetTarget() {
               Save
             </Button>
           </Box>
+          <Box mt={1}>
+          {
+            isSaved ?
+                <Button variant="contained" color="secondary"
+                  onClick={handleLinkGeneration}
+                  label="handleLinkGeneration"
+                  value="handleLinkGeneration"
+                >
+                  Generate exercise link
+              </Button>
+              : null
+          }
+          </Box>
+          {
+            exerciseLink.length > 0 ?
+              <div>
+                <Grid
+                  container
+                  direction="row"
+                  justify="left"
+                >
+                  <Box mt={1}>
+                    <Typography noWrap={true} variant="caption" style={{ width: '50%' }}>
+                      <Link href={exerciseLink} onClick={preventDefault}>
+                        {exerciseLink}
+                      </Link>
+                    </Typography>
+                  </Box>
+                  <Box>
+                    <Button variant="contained" color="primary"
+                      onClick={handleCopy}
+                      label="handleCopy"
+                      value="handleCopy"
+                    >
+                      Copy
+                  </Button>
+                  </Box>
+                </Grid>
+              </div>
+              : null
+          }
         </Grid>
       </Box>
     </Screen>
