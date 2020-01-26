@@ -1,19 +1,8 @@
-import React, { useState } from 'react';
-import { Box, Typography, makeStyles, createMuiTheme, ThemeProvider, CssBaseline } from '@material-ui/core';
-
-import { DeviceOrientation } from '../../components/device-orientation.component';
-import { Screen } from '../../Screen';
+import React from 'react';
+import { CssBaseline } from '@material-ui/core';
 
 import '../../App.scss';
-import { useHistory } from 'react-router-dom';
-import { ExerciseService } from '../../services/exercise';
 import { Game } from '../../components/game';
-
-const theme = createMuiTheme({
-  palette: {
-    type: 'dark',
-  },
-});
 
 export function PerformExercise() {
 

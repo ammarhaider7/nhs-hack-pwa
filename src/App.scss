@@ -45,6 +45,17 @@
   stroke-dasharray: 5 5;
 }
 
+.initial-line {
+  fill: none;
+  stroke: grey;
+  stroke-width: 0.5px;
+  stroke-dasharray: 5 5;
+}
+
+.initial-line-text {
+  fill: grey;
+}
+
 .success-line-text {
   fill: green;
 }
@@ -54,4 +65,14 @@
   fill: none;
   stroke: #000;
   shape-rendering: crispEdges;
+}
+
+.ball-beta {
+  font-weight: bold;
+}
+
+.circle {
+  fill: white;
+  stroke: steelblue;
+  stroke-width: 2px;
 }
