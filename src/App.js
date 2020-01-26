@@ -11,6 +11,8 @@ import { SetTarget } from './screens/set-target'
 import { AnimatedSwitch, spring } from 'react-router-transition';
 
 import localforage from 'localforage';
+import { ExerciseDetails } from './screens/exercise-details';
+import { PerformExercise } from './screens/perform-exercise';
 
 function glide(val) {
   return spring(val, {
@@ -61,6 +63,8 @@ export default () => (
           <Route path="/create-exercise" component={CreateExercise} />
           <Route path="/measure" component={Measure} />
           <Route path="/set-target" component={SetTarget} />
+          <Route path="/exercise-details" component={ExerciseDetails} />
+          <Route path="/perform-exercise" component={PerformExercise} />
         </AnimatedSwitch>
       </div>
     )} />

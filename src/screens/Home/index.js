@@ -51,9 +51,9 @@ export class Home extends Component {
           {this.state.isExercise ?           
             <Button variant="contained" color="secondary"
               component={Link}
-              to="/perform-exercise"
-              label="perform-exercise"
-              value="perform-exercise"
+              to="/exercise-details"
+              label="exercise-details"
+              value="exercise-details"
               startIcon={<AirlineSeatLegroomExtraIcon />}
             >
               Perform exercise
