@@ -8,13 +8,14 @@ import AirlineSeatLegroomExtraIcon from '@material-ui/icons/AirlineSeatLegroomEx
 import { Screen } from '../../Screen';
 
 import '../../App.scss';
-import { LocalDeviceStorage } from '../../services/local-device-storage';
+
+import { ExerciseService } from '../../services/exercise';
 export class Home extends Component {
 
   doesExerciseExist = async () => {
-    const isExercise = await LocalDeviceStorage.get('targetUpperLimit');
+    const exercise = await ExerciseService.getExercise() || null;
     this.setState({
-      isExercise: !!isExercise
+      isExercise: !!exercise
     })
   }
 

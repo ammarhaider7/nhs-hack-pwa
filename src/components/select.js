@@ -6,7 +6,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { Box, TextField } from '@material-ui/core';
 
-import { LocalDeviceStorage } from '../services/local-device-storage';
+import { ExerciseService } from '../services/exercise';
 
 const useStyles = makeStyles(theme => ({
   formControl: {
@@ -28,19 +28,18 @@ export default function SimpleSelect() {
   const handleJointChange = event => {
     const { value } = event.target;
     setJoint(value);
-    LocalDeviceStorage.set('joint', value)
+    ExerciseService.setJoint(value);
   };
 
   const handledirectionOfMotionChange = event => {
     const { value } = event.target;
     setDirectionOfMotion(value);
-    LocalDeviceStorage.set('directionOfMotion', value)
+    ExerciseService.setDirectionOfMotion(value);
   }
 
   const handleInstructionChange = event => {
     const { value } = event.target;
     setInstructions(value);
-    LocalDeviceStorage.set('instructions', value)
   }
 
   return (

@@ -7,8 +7,13 @@ import { Screen } from '../../Screen';
 
 import '../../App.scss';
 import SimpleSelect from '../../components/select';
+import { ExerciseService } from '../../services/exercise';
 
 export class CreateExercise extends Component {
+
+  componentDidMount() {
+    ExerciseService.createNewExercise();
+  }
 
   render() {
     return (

@@ -3,10 +3,10 @@ import { Box, Typography, Button, Grid, makeStyles, createMuiTheme, ThemeProvide
 
 import { DeviceOrientation } from '../../components/device-orientation.component';
 import { Screen } from '../../Screen';
-import { LocalDeviceStorage } from '../../services/local-device-storage';
 
 import '../../App.scss';
 import { useHistory } from 'react-router-dom';
+import { ExerciseService } from '../../services/exercise';
 
 const theme = createMuiTheme({
   palette: {
@@ -39,21 +39,21 @@ export function Measure() {
   const [beta, setBeta] = useState('');
 
   const getZeroAngleFromStorage = async () => {
-    const data = await LocalDeviceStorage.get('zeroAngle');
+    const data = await ExerciseService.getZeroAngle();
     return data;
   }
 
-  const handleSetZeroClick = () => {
+  const handleSetZeroClick = async () => {
     const formattedBeta = formatAngleData(beta);
     setZeroAngle(formattedBeta);
-    LocalDeviceStorage.set('zeroAngle', formattedBeta);
+    await ExerciseService.setZeroAngle(Number(formattedBeta));
     setZeroAngleSet(true);
   }
 
   const history = useHistory();
 
   const handleFinaliseClick = async () => {
-    await LocalDeviceStorage.set('initialRange', formatAngleData(beta) - zeroAngle);
+    await ExerciseService.setInitialRange(formatAngleData(beta) - zeroAngle);
     history.push('/set-target');
   }
 

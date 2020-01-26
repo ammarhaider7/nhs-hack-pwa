@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { Box, Typography, Slider, Grid, Button, withStyles } from '@material-ui/core';
 
-import { LocalDeviceStorage } from '../../services/local-device-storage';
-
 import { Screen } from '../../Screen';
 
 import '../../App.scss';
 import { useHistory } from 'react-router-dom';
+import { ExerciseService } from '../../services/exercise';
 
 const PrettoSlider = withStyles({
   root: {
@@ -44,7 +43,7 @@ export function SetTarget() {
   const [value, setValue] = React.useState([-10, 10]);
 
   const getInitialRange = async () => {
-    const range = await LocalDeviceStorage.get('initialRange');
+    const range = await ExerciseService.getInitialRange();
     setInitialRange(range);
   }
 
@@ -60,9 +59,9 @@ export function SetTarget() {
 
   const history = useHistory();
 
-  function handleSave() {
-    LocalDeviceStorage.set('targetUpperLimit', value[1]);
-    LocalDeviceStorage.set('targetLowerLimit', value[0]);
+  async function handleSave() {
+    await ExerciseService.setTargetUpperLimit(value[1]);
+    await ExerciseService.setTargetLowerLimit(value[0]);
     history.push('/');
   }
 
