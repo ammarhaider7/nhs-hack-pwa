@@ -7,11 +7,14 @@ export const ExerciseService = {
   getExercise: async () => {
     return await LocalDeviceStorage.get('exercise');
   },
+  setSharedExercise: async (exercise) => {
+    return await LocalDeviceStorage.set('exercise', exercise);
+  },
   encodeExerciseData: async () => {
     const exercise = await LocalDeviceStorage.get('exercise');
     return btoa(JSON.stringify(exercise));
   },
-  decodeExerciseData: async (base64EncodedData) => {
+  decodeExerciseData: (base64EncodedData) => {
     const exercise = atob(base64EncodedData);
     return JSON.parse(exercise);
   },

@@ -12,6 +12,17 @@ import '../../App.scss';
 import { ExerciseService } from '../../services/exercise';
 export class Home extends Component {
 
+
+  loadSharedExercise = async () => {
+    const search = window.location.search;
+    if (search.length > 0) {
+      const urlParams = new URLSearchParams(search);
+      const encodedExercise = urlParams.get('e');
+      const exercise = ExerciseService.decodeExerciseData(encodedExercise);
+      return await ExerciseService.setSharedExercise(exercise);
+    }
+  }
+
   doesExerciseExist = async () => {
     const exercise = await ExerciseService.getExercise() || null;
     this.setState({
@@ -19,7 +30,8 @@ export class Home extends Component {
     })
   }
 
-  componentWillMount() {
+  componentWillMount = async () => {
+    await this.loadSharedExercise();
     this.doesExerciseExist();
   }
 
