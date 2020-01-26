@@ -5,7 +5,6 @@ import * as copy from 'clipboard-copy';
 import { Screen } from '../../Screen';
 
 import '../../App.scss';
-// import { useHistory } from 'react-router-dom';
 import { ExerciseService } from '../../services/exercise';
 
 const PrettoSlider = withStyles({
@@ -69,8 +68,6 @@ export function SetTarget() {
   function handleCopy() {
     copy(exerciseLink);
   }
-
-  // const history = useHistory();
 
   async function handleSave() {
     setIsSaved(true);

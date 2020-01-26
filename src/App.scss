@@ -26,3 +26,32 @@
   color: #4caf50;
   font-weight: 450 !important;
 }
+
+.warn-line {
+  fill: none;
+  stroke: red;
+  stroke-width: 0.5px;
+  stroke-dasharray: 5 5;
+}
+
+.warn-line-text {
+  fill: red;
+}
+
+.success-line {
+  fill: none;
+  stroke: green;
+  stroke-width: 0.5px;
+  stroke-dasharray: 5 5;
+}
+
+.success-line-text {
+  fill: green;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
