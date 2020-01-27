@@ -2,6 +2,8 @@
 
 ![Rehabify Logo](https://user-images.githubusercontent.com/10219824/73192571-204f1000-4121-11ea-90fc-026c1346b38c.png)
 
+Won second place in the NHS Hackathon Cardiff 2020! First place 🥇in the community vote.
+
 ## What
 
 A simple digital tool with goniometry to allow clinicians to prescribe rehab exercises and patients to self-perform and monitor recovery.
