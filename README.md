@@ -2,7 +2,7 @@
 
 ![Rehabify Logo](https://user-images.githubusercontent.com/10219824/73192571-204f1000-4121-11ea-90fc-026c1346b38c.png)
 
-Won second place in the NHS Hackathon Cardiff 2020! First place 🥇in the community vote.
+Won second place 🏆in the NHS Hackathon Cardiff 2020! First place 🥇in the community vote.
 
 ## What
 
@@ -24,3 +24,12 @@ To give patients the ability to:
 - Patient is unable to measure themselves from home
 - Weeks between appointments with no measurable progress reports
 - No live guidance for patient when performing exercises
+
+## Clinician journey
+
+![Clinician journey](https://media.giphy.com/media/TIiLkAXKyQN28pt8rT/giphy.gif)
+
+1. Enter exercise details: joint, direction of motion and instructions
+2. Configure target range of exercise
+3. Generate share-able link with (exercise data encoded in a query string)
+4. Send link to patient
