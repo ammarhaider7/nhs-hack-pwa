@@ -34,7 +34,7 @@ To give patients the ability to:
 3. Generate share-able link with (exercise data encoded in a query string)
 4. Send link to patient
 
-## Patient journey
+## Patient journey
 
 ![Patient journey](https://media.giphy.com/media/gLLdbzeMq5Nnkrv0FU/giphy.gif)
 
