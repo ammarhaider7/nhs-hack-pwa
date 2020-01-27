@@ -33,3 +33,11 @@ To give patients the ability to:
 2. Configure target range of exercise
 3. Generate share-able link with (exercise data encoded in a query string)
 4. Send link to patient
+
+## Patient journey
+
+![Patient journey](https://media.giphy.com/media/gLLdbzeMq5Nnkrv0FU/giphy.gif)
+
+1. Paste link from clinician into their smartphone's browser 
+2. View exercise details
+3. Perform the prescribed exercise whilst viewing the visualisation to ensure they are within the target range 
